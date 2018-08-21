@@ -85,13 +85,12 @@ public class DeveloperRepository {
         }
     }
 
-    // TODO: 21.08.2018 нельзя записать поскольку (CharSequence) developer.getSkillsSet() вызывает ошибку, проблема в приведении типов
     public void writeDeveloperInFile(Developer developer) {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("developer.txt"))) {
                 bufferedWriter.append((char) developer.getID())
                         .append(" ").append(developer.getName())
-                        .append(" ").append((CharSequence) developer.getSkillsSet())
-                        .append(" ").append((CharSequence) developer.getAccount());
+                        .append(" ").append(developer.getSkillsSet().toString())
+                        .append(" ").append(developer.getAccount().toString());
                 bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();

@@ -50,6 +50,7 @@ public class DeveloperController {
 
     public void chooseSkills(){
         String input;
+        skillsSet.add(aSkills);
         while (true) {
             System.out.println("Choose your aSkills");
             System.out.println("java: 1");
@@ -86,9 +87,6 @@ public class DeveloperController {
                 case "#":
                     return;
             }
-            // TODO: 21.08.2018 поскольку я инициализирую класс Skills по умолчанию, то каждый раз при вызове метода у меня инициализируется новый HashSet
-
-            skillsSet.add(aSkills);
         }
     }
 
