@@ -15,6 +15,10 @@ public class Main {
         DeveloperController dc = new DeveloperController(scanner, dr);
         View view = new View(scanner, dc);
 
-        view.run();
+//        view.run();
+
+//        dr.readAccountFromFile();
+        System.out.println(dr.readDeveloperFile());
+        // TODO: 28.08.2018 Дописать классы и интерфейсы
     }
 }

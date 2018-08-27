@@ -1,0 +1,25 @@
+package ru.basharin.reposotory;
+
+import ru.basharin.model.Skills;
+
+public interface SkillRepository extends GenericRepository<Skills, Long> {
+    @Override
+    default void save(Skills skills) {
+
+    }
+
+    @Override
+    default Skills getByID(Long aLong) {
+        return null;
+    }
+
+    @Override
+    default void deleteByID(Long aLong) {
+
+    }
+
+    @Override
+    default void create(Skills skills) {
+
+    }
+}

@@ -3,7 +3,7 @@ package ru.basharin.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Skills implements Serializable {
+public class Skills extends NamedEntity implements Serializable {
 
     private String java;
     private String hibernate;
@@ -13,7 +13,8 @@ public class Skills implements Serializable {
     private String spring;
     private String git;
 
-    public Skills() {
+    public Skills(long id, String name) {
+        super(id, name);
         this.java = null;
         this.hibernate = null;
         this.SQL = null;

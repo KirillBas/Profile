@@ -8,18 +8,22 @@ public class Developer implements Serializable{
 
     private long ID;
     private String name;
-    private Set<Skills> skillsSet;
+    private Skills skills;
     private Account account;
 
-    public Developer(long ID, String name, Set<Skills> skillsSet, Account account) {
+    public Developer(long ID, String name, Skills skills, Account account) {
         this.ID = ID;
         this.name = name;
-        this.skillsSet = skillsSet;
+        this.skills = skills;
         this.account = account;
     }
 
     public long getID() {
         return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public String getName() {
@@ -30,12 +34,12 @@ public class Developer implements Serializable{
         this.name = name;
     }
 
-    public Set<Skills> getSkillsSet() {
-        return skillsSet;
+    public Skills getSkills() {
+        return skills;
     }
 
-    public void setSkillsSet(Set<Skills> skillsSet) {
-        this.skillsSet = skillsSet;
+    public void setSkills(Skills skills) {
+        this.skills = skills;
     }
 
     public Account getAccount() {
@@ -53,13 +57,13 @@ public class Developer implements Serializable{
         Developer developer = (Developer) o;
         return ID == developer.ID &&
                 Objects.equals(name, developer.name) &&
-                Objects.equals(skillsSet, developer.skillsSet) &&
+                Objects.equals(skills, developer.skills) &&
                 Objects.equals(account, developer.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, name, skillsSet, account);
+        return Objects.hash(ID, name, skills, account);
     }
 
     @Override
@@ -67,7 +71,7 @@ public class Developer implements Serializable{
         return "Developer{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
-                ", skillsSet=" + skillsSet +
+                ", skills=" + skills +
                 ", account=" + account +
                 '}';
     }
