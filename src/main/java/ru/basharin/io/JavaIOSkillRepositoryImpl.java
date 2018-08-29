@@ -1,14 +1,14 @@
-package ru.basharin.reposotory;
+package ru.basharin.io;
 
 import ru.basharin.model.Skills;
 
 import java.io.*;
 
-public class SkillsRepository implements SkillRepository {
+public class JavaIOSkillRepositoryImpl {
 
     public Object readSkillsFile() {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("skills.txt"))) {
-            return bufferedReader.readLine().split(" ");
+            return bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -17,7 +17,7 @@ public class SkillsRepository implements SkillRepository {
 
     public void writeSkillsFile(Skills skills) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("skills.txt"))) {
-            bufferedWriter.append((char) skills.getId())
+            bufferedWriter.append(String.valueOf(skills.getId()))
                     .append(" ").append(skills.getJava())
                     .append(" ").append(skills.getSQL())
                     .append(" ").append(skills.getSpring())
@@ -29,26 +29,5 @@ public class SkillsRepository implements SkillRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // TODO: 28.08.2018 Дописать методы
-    @Override
-    public void save(Skills skills) {
-        writeSkillsFile(skills);
-    }
-
-    @Override
-    public Skills getByID(Long aLong) {
-        return null;
-    }
-
-    @Override
-    public void deleteByID(Long aLong) {
-
-    }
-
-    @Override
-    public void create(Skills skills) {
-
     }
 }

@@ -3,13 +3,13 @@ package ru.basharin.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Account extends NamedEntity implements Serializable{
+public class Account extends BaseEntity implements Serializable{
 
     private String accountName;
     private String password;
 
-    public Account(long id, String name, String accountName, String password) {
-        super(id, name);
+    public Account(long id, String accountName, String password) {
+        super(id);
         this.accountName = accountName;
         this.password = password;
     }
@@ -34,6 +34,7 @@ public class Account extends NamedEntity implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Account account = (Account) o;
         return Objects.equals(accountName, account.accountName) &&
                 Objects.equals(password, account.password);
@@ -41,7 +42,7 @@ public class Account extends NamedEntity implements Serializable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountName, password);
+        return Objects.hash(super.hashCode(), accountName, password);
     }
 
     @Override

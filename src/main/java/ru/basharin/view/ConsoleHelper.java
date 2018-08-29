@@ -7,7 +7,9 @@ import ru.basharin.model.Developer;
 
 import java.util.*;
 
-public class View {
+public class ConsoleHelper {
+
+    // TODO: 28.08.2018 Это общий view, убрать детали в ссотв. разделы
 
     private final Scanner scanner;
     private Developer developer = null;
@@ -15,7 +17,7 @@ public class View {
     private Skills aSkills = null;
     private final DeveloperController devController;
 
-    public View(Scanner scanner, DeveloperController devController) {
+    public ConsoleHelper(Scanner scanner, DeveloperController devController) {
         this.scanner = scanner;
         this.devController = devController;
     }

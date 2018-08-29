@@ -3,7 +3,7 @@ package ru.basharin.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Skills extends NamedEntity implements Serializable {
+public class Skills extends BaseEntity implements Serializable {
 
     private String java;
     private String hibernate;
@@ -13,8 +13,8 @@ public class Skills extends NamedEntity implements Serializable {
     private String spring;
     private String git;
 
-    public Skills(long id, String name) {
-        super(id, name);
+    public Skills(long id) {
+        super(id);
         this.java = null;
         this.hibernate = null;
         this.SQL = null;
@@ -84,6 +84,7 @@ public class Skills extends NamedEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Skills skills = (Skills) o;
         return Objects.equals(java, skills.java) &&
                 Objects.equals(hibernate, skills.hibernate) &&
@@ -96,7 +97,7 @@ public class Skills extends NamedEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(java, hibernate, SQL, maven, JDBC, spring, git);
+        return Objects.hash(super.hashCode(), java, hibernate, SQL, maven, JDBC, spring, git);
     }
 
     @Override

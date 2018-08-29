@@ -2,52 +2,35 @@ package ru.basharin.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 public class Developer implements Serializable{
 
     private long ID;
     private String name;
-    private Skills skills;
-    private Account account;
+    private long skillsID;
+    private long accountID;
 
-    public Developer(long ID, String name, Skills skills, Account account) {
-        this.ID = ID;
+    public Developer(long accountID, String name) {
+        this.ID = accountID;
         this.name = name;
-        this.skills = skills;
-        this.account = account;
+        this.skillsID = accountID;
+        this.accountID = accountID;
     }
 
     public long getID() {
         return ID;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public long getSkillsID() {
+        return skillsID;
     }
 
-    public Skills getSkills() {
-        return skills;
-    }
-
-    public void setSkills(Skills skills) {
-        this.skills = skills;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
+    public long getAccountID() {
+        return accountID;
     }
 
     @Override
@@ -56,14 +39,14 @@ public class Developer implements Serializable{
         if (o == null || getClass() != o.getClass()) return false;
         Developer developer = (Developer) o;
         return ID == developer.ID &&
-                Objects.equals(name, developer.name) &&
-                Objects.equals(skills, developer.skills) &&
-                Objects.equals(account, developer.account);
+                skillsID == developer.skillsID &&
+                accountID == developer.accountID &&
+                Objects.equals(name, developer.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, name, skills, account);
+        return Objects.hash(ID, name, skillsID, accountID);
     }
 
     @Override
@@ -71,8 +54,8 @@ public class Developer implements Serializable{
         return "Developer{" +
                 "ID=" + ID +
                 ", name='" + name + '\'' +
-                ", skills=" + skills +
-                ", account=" + account +
+                ", skillsID=" + skillsID +
+                ", accountID=" + accountID +
                 '}';
     }
 }

@@ -3,17 +3,17 @@ package ru.basharin.controller;
 import ru.basharin.model.Account;
 import ru.basharin.model.Skills;
 import ru.basharin.model.Developer;
+import ru.basharin.reposotory.DevRepository;
 import ru.basharin.reposotory.DeveloperRepository;
 
 import java.util.*;
 
-public class DeveloperController {
+public class DeveloperController implements DevRepository{
+    // TODO: 28.08.2018 Здесь только обработка запросов Developer все остальное перенести в ConsoleHelper по идее должен имплементировать интерфейс DevRepository
     private final Scanner scanner;
-    private  final DeveloperRepository devRepository;
-    private Skills aSkills = new Skills();
-    private Set<Skills> skillsSet = new HashSet<>();
+    private final DeveloperRepository devRepository;
     private Account account;
-    private Developer developer;
+    private Set<Skills> skillsSet = new HashSet<>();
 
     public DeveloperController(Scanner scanner, DeveloperRepository devRepository) {
         this.scanner = scanner;
@@ -42,13 +42,21 @@ public class DeveloperController {
             break;
         }
 
-        account = new Account(login, pass);
-//        accounts.add(account);
-//        devRepository.writeAccountInFile(accounts);
-//        System.out.println(accounts);
+        String ID;
+        while (true) {
+            System.out.println("Write ID");
+            ID = scanner.nextLine();
+            if (ID.equals("#")){
+                return;
+            }
+            break;
+        }
+
+        account = new Account(Long.parseLong(ID), login, pass);
     }
 
     public void chooseSkills(){
+        Skills aSkills = new Skills(account.getId());
         String input;
         skillsSet.add(aSkills);
         while (true) {
@@ -100,8 +108,9 @@ public class DeveloperController {
             }
             break;
         }
-        Random random = new Random();
-        developer = new Developer(random.nextInt(), name, skillsSet, account);
+
+        // TODO: 28.08.2018 разобраться что мы сохраняем
+        Developer developer = new Developer(account.getId(), "Kirill");
         devRepository.writeDeveloperInFile(developer);
     }
 }
