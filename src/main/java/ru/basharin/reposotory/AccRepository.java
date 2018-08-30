@@ -1,24 +1,26 @@
 package ru.basharin.reposotory;
 
-public interface AccRepository extends GenericRepository {
+import ru.basharin.model.Skills;
+
+public interface AccRepository extends GenericRepository<Skills, Long> {
 
     @Override
-    default void save(Object o) {
+    default void save(Skills skills) {
 
     }
 
     @Override
-    default Object getByID(Object o) {
+    default Skills getByID(Long aLong) {
         return null;
     }
 
     @Override
-    default void deleteByID(Object o) {
+    default void deleteByID(Skills skills) {
 
     }
 
     @Override
-    default void create(Object o) {
+    default void create(Skills skills) {
 
     }
 }

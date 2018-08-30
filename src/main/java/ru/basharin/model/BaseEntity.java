@@ -1,7 +1,6 @@
 package ru.basharin.model;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class BaseEntity {
     private long id;

@@ -5,10 +5,21 @@ import ru.basharin.io.JavaIOSkillRepositoryImpl;
 import ru.basharin.model.Skills;
 import ru.basharin.reposotory.SkillRepository;
 
-public class SkillController implements SkillRepository{
-    // TODO: 28.08.2018 Здесь только обработка запросов Skill все остальное перенести в ConsoleHelper
+import java.util.HashMap;
+import java.util.Map;
 
-    JavaIOSkillRepositoryImpl jIOsr = new JavaIOSkillRepositoryImpl();
+public class SkillController implements SkillRepository{
+    private final Map<Long, Skills> skillsSet = new HashMap<>();
+    private final JavaIOSkillRepositoryImpl jIOsr;
+
+    public SkillController(JavaIOSkillRepositoryImpl jIOsr) {
+        this.jIOsr = jIOsr;
+        skillsSet.putAll(jIOsr.readSkillsFile());
+    }
+
+    public Map<Long, Skills> getSkillsSet() {
+        return skillsSet;
+    }
 
     @Override
     public void save(Skills skills) {
@@ -16,13 +27,14 @@ public class SkillController implements SkillRepository{
     }
 
     @Override
-    public Skills getByID(Long aLong) {
-        return null;
+    public Skills getByID(Long id) {
+        return skillsSet.get(id);
     }
 
     @Override
-    public void deleteByID(Long aLong) {
-
+    public void deleteByID(Skills skills) {
+        skillsSet.remove(skills.getId());
+        jIOsr.writeSkillsInFile(skillsSet);
     }
 
     @Override

@@ -14,7 +14,7 @@ public interface SkillRepository extends GenericRepository<Skills, Long> {
     }
 
     @Override
-    default void deleteByID(Long aLong) {
+    default void deleteByID(Skills skills) {
 
     }
 

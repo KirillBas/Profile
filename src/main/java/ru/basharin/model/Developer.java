@@ -5,15 +5,22 @@ import java.util.Objects;
 
 public class Developer implements Serializable{
 
-    private long ID;
-    private String name;
-    private long skillsID;
-    private long accountID;
+    private final long ID;
+    private final String name;
+    private final long skillsID;
+    private final long accountID;
 
     public Developer(long accountID, String name) {
         this.ID = accountID;
         this.name = name;
         this.skillsID = accountID;
+        this.accountID = accountID;
+    }
+
+    public Developer(long ID, String name, long skillsID, long accountID) {
+        this.ID = ID;
+        this.name = name;
+        this.skillsID = skillsID;
         this.accountID = accountID;
     }
 

@@ -2,12 +2,12 @@ package ru.basharin.reposotory;
 
 public interface GenericRepository<T, ID> {
 
-    public void save(T t);
+    void save(T t);
 
-    public T getByID(ID id);
+    T getByID(ID id);
 
-    public void deleteByID(ID id);
+    void deleteByID(T t);
 
-    public void create(T t);
+    void create(T t);
 
 }

@@ -15,11 +15,10 @@ public class ConsoleHelper {
     private Developer developer = null;
     private Account account = null;
     private Skills aSkills = null;
-    private final DeveloperController devController;
 
     public ConsoleHelper(Scanner scanner, DeveloperController devController) {
         this.scanner = scanner;
-        this.devController = devController;
+        DeveloperController devController1 = devController;
     }
 
     public void run() {
@@ -35,9 +34,9 @@ public class ConsoleHelper {
 //                    signIn();
                     break;
                 case "2":
-                    devController.createAccount();
-                    devController.chooseSkills();
-                    devController.createDeveloper();
+//                    devController.createAccount();
+//                    devController.chooseSkills();
+//                    devController.createDeveloper();
 
                     break;
                 case "#":

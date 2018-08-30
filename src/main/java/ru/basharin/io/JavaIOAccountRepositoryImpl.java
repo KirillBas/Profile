@@ -7,7 +7,7 @@ import java.io.*;
 public class JavaIOAccountRepositoryImpl {
 
     public Object readDeveloperFile() {
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("developer.txt"))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("account.txt"))) {
             return bufferedReader.readLine().split(" ");
         } catch (IOException e) {
             e.printStackTrace();
@@ -15,13 +15,9 @@ public class JavaIOAccountRepositoryImpl {
         }
     }
 
-    public void writeDeveloperInFile(Developer developer) {
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("developer.txt"))) {
-            bufferedWriter.append((char) developer.getID())
-                    .append(" ").append(developer.getName())
-                    .append(" ").append((char) developer.getSkillsID().getId())
-                    .append(" ").append((char) developer.getAccount().getId());
-            bufferedWriter.newLine();
+    public void writeAccountInFile(Developer developer) {
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("account.txt"))) {
+
         } catch (IOException e) {
             e.printStackTrace();
         }

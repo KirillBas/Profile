@@ -24,6 +24,17 @@ public class Skills extends BaseEntity implements Serializable {
         this.git = null;
     }
 
+    public Skills(long id, String java, String hibernate, String SQL, String maven, String JDBC, String spring, String git) {
+        super(id);
+        this.java = java;
+        this.hibernate = hibernate;
+        this.SQL = SQL;
+        this.maven = maven;
+        this.JDBC = JDBC;
+        this.spring = spring;
+        this.git = git;
+    }
+
     public String getJava() {
         return java;
     }
