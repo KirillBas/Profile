@@ -2,7 +2,9 @@ package ru.basharin.reposotory;
 
 import ru.basharin.model.Developer;
 
-public interface DevRepository extends GenericRepository<Developer, Long> {
+import java.util.List;
+
+public interface DeveloperRepository extends GenericRepository<Developer, Long> {
 
     @Override
     default void save(Developer developer) {
@@ -15,12 +17,12 @@ public interface DevRepository extends GenericRepository<Developer, Long> {
     }
 
     @Override
-    default void deleteByID(Developer developer) {
+    default void deleteByID(Long aLong) {
 
     }
 
     @Override
-    default void create(Developer developer) {
-
+    default List<Developer> readAll() {
+        return null;
     }
 }
