@@ -13,18 +13,18 @@ public class Skills extends BaseEntity implements Serializable {
     private String spring;
     private String git;
 
-    public Skills(long id) {
+    public Skills(int id) {
         super(id);
-        this.java = null;
-        this.hibernate = null;
-        this.SQL = null;
-        this.maven = null;
-        this.JDBC = null;
-        this.spring = null;
-        this.git = null;
+        this.java = "no";
+        this.hibernate = "no";
+        this.SQL = "no";
+        this.maven = "no";
+        this.JDBC = "no";
+        this.spring = "no";
+        this.git = "no";
     }
 
-    public Skills(long id, String java, String hibernate, String SQL, String maven, String JDBC, String spring, String git) {
+    public Skills(int id, String java, String hibernate, String SQL, String maven, String JDBC, String spring, String git) {
         super(id);
         this.java = java;
         this.hibernate = hibernate;
@@ -113,14 +113,13 @@ public class Skills extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Skills{" +
-                "java='" + java + '\'' +
-                ", hibernate='" + hibernate + '\'' +
-                ", SQL='" + SQL + '\'' +
-                ", maven='" + maven + '\'' +
-                ", JDBC='" + JDBC + '\'' +
-                ", spring='" + spring + '\'' +
-                ", git='" + git + '\'' +
-                '}';
+        return getId() +
+                " " + java +
+                " " + hibernate +
+                " " + SQL +
+                " " + maven +
+                " " + JDBC +
+                " " + spring +
+                " " + git;
     }
 }

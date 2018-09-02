@@ -8,7 +8,7 @@ import java.util.*;
 
 public class JavaIODeveloperRepositoryImpl implements DeveloperRepository{
 
-    private final String FILE_NAME = "developer.txt";
+    private final String FILE_NAME = "src\\main\\java\\ru\\basharin\\resources\\developer.txt";
     private List<Developer> developerList = new ArrayList<>();
 
     private void readDeveloperFile() {

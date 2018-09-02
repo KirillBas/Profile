@@ -8,40 +8,26 @@ import java.util.*;
 
 public class JavaIOSkillRepositoryImpl implements SkillRepository{
 
-    private final String FILE_NAME = "skills.txt";
-    private List<Skills> skillsList = new ArrayList<>();
+    private final String FILE_NAME = "src\\main\\java\\ru\\basharin\\resources\\skills.txt";
+    private File file = new File(FILE_NAME);
 
-    public JavaIOSkillRepositoryImpl(List<Skills> skillsList) {
-        this.skillsList = skillsList;
-    }
-
-    private void readSkillsFile() {
-
-        try (Scanner scanner = new Scanner(new FileReader(FILE_NAME))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] words = line.split(" ");
-                Skills skills = new Skills(Integer.parseInt(words[0]), words[1], words[2], words[3], words[0], words[1], words[2], words[3]);
-                skillsList.add(skills);
-            }
+// TODO: 02.09.2018 Проблемма при чтении файла первого значения если мы пытаемся вернуть Skills.
+// TODO: 02.09.2018  Вероятно потому что при записи автоматически добавляется какойто знак к значению ID.
+// TODO: 02.09.2018 при возвращении Object все корректно читается. Задать вопрос Жене
+    private Object readSkillsFile() {
+        try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
+            return objectInputStream.readObject();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
-    private void writeSkillsInFile(List<Skills> skillsList) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME))) {
-            for (Skills newSkill : skillsList)
-                bufferedWriter.append(String.valueOf(newSkill.getId()))
-                        .append(" ").append(newSkill.getJava())
-                        .append(" ").append(newSkill.getSQL())
-                        .append(" ").append(newSkill.getSpring())
-                        .append(" ").append(newSkill.getMaven())
-                        .append(" ").append(newSkill.getHibernate())
-                        .append(" ").append(newSkill.getJDBC())
-                        .append(" ").append(newSkill.getGit());
-                bufferedWriter.newLine();
-
+    private void writeSkillsInFile(Skills skills) {
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(skills.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,32 +35,35 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
 
     @Override
     public void save(Skills skills) {
-        skillsList.add(skills);
-        writeSkillsInFile(skillsList);
+        writeSkillsInFile(skills);
     }
 
-    @Override
-    public Skills getByID(Long skillID) {
-        for (Skills result: skillsList) {
-            if (skillID.equals(result.getId())) {
-                return result;
-            }
-        }
-        return null;
+    public Object read() {
+        return readSkillsFile();
     }
 
-    @Override
-    public void deleteByID(Long skillID) {
-        for (Skills result: skillsList) {
-            if (skillID.equals(result.getId())) {
-                skillsList.remove(result);
-            }
-        }
-    }
-
-    @Override
-    public List<Skills> readAll() {
-        readSkillsFile();
-        return skillsList;
-    }
+//    @Override
+//    public Skills getByID(Long skillID) {
+//        for (Skills result: skillsList) {
+//            if (skillID.equals(result.getId())) {
+//                return result;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    @Override
+//    public void deleteByID(Long skillID) {
+//        for (Skills result: skillsList) {
+//            if (skillID.equals(result.getId())) {
+//                skillsList.remove(result);
+//            }
+//        }
+//    }
+//
+//    @Override
+//    public List<Skills> readAll() {
+//        readSkillsFile();
+//        return skillsList;
+//    }
 }

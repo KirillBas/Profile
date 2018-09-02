@@ -8,7 +8,7 @@ public class Account extends BaseEntity implements Serializable{
     private String accountName;
     private String password;
 
-    public Account(long id, String accountName, String password) {
+    public Account(int id, String accountName, String password) {
         super(id);
         this.accountName = accountName;
         this.password = password;

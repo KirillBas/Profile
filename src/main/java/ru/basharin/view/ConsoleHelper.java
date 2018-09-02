@@ -1,5 +1,6 @@
 package ru.basharin.view;
 
+import ru.basharin.controller.AccountController;
 import ru.basharin.controller.DeveloperController;
 import ru.basharin.model.Account;
 import ru.basharin.model.Skills;
@@ -15,10 +16,11 @@ public class ConsoleHelper {
     private Developer developer = null;
     private Account account = null;
     private Skills aSkills = null;
+    private AccountView accountView = new AccountView();
+    private SkillsView skillsView = new SkillsView();
 
-    public ConsoleHelper(Scanner scanner, DeveloperController devController) {
+    public ConsoleHelper(Scanner scanner) {
         this.scanner = scanner;
-        DeveloperController devController1 = devController;
     }
 
     public void run() {
@@ -34,9 +36,7 @@ public class ConsoleHelper {
 //                    signIn();
                     break;
                 case "2":
-//                    devController.createAccount();
-//                    devController.chooseSkills();
-//                    devController.createDeveloper();
+                    skillsView.chooseSkills();
 
                     break;
                 case "#":

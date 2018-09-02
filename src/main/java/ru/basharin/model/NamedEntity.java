@@ -6,7 +6,7 @@ public class NamedEntity extends BaseEntity {
 
     private String name;
 
-    public NamedEntity(long id, String name) {
+    public NamedEntity(int id, String name) {
         super(id);
         this.name = name;
     }
