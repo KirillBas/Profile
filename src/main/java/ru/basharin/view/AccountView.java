@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class AccountView {
     private Scanner scanner;
-    private Account account;
     private JavaIOAccountRepositoryImpl javaIOAccountRepository = new JavaIOAccountRepositoryImpl();
 
     public void createAccount() {
@@ -43,7 +42,7 @@ public class AccountView {
             break;
         }
 
-        account = new Account(Integer.parseInt(ID), login, pass);
+        Account account = new Account(Integer.parseInt(ID), login, pass);
         javaIOAccountRepository.create(account);
     }
 }

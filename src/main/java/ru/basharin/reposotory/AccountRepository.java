@@ -1,7 +1,6 @@
 package ru.basharin.reposotory;
 
 import ru.basharin.model.Account;
-import ru.basharin.model.Skills;
 
 import java.util.List;
 

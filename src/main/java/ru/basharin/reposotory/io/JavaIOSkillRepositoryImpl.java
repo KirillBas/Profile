@@ -4,30 +4,39 @@ import ru.basharin.model.Skills;
 import ru.basharin.reposotory.SkillRepository;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JavaIOSkillRepositoryImpl implements SkillRepository{
 
     private final String FILE_NAME = "src\\main\\java\\ru\\basharin\\resources\\skills.txt";
     private File file = new File(FILE_NAME);
 
-// TODO: 02.09.2018 Проблемма при чтении файла первого значения если мы пытаемся вернуть Skills.
-// TODO: 02.09.2018  Вероятно потому что при записи автоматически добавляется какойто знак к значению ID.
-// TODO: 02.09.2018 при возвращении Object все корректно читается. Задать вопрос Жене
-    private Object readSkillsFile() {
-        try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
-            return objectInputStream.readObject();
+    private List<Skills> readSkillsFile() {
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            List<Skills> result = new ArrayList<>();
+            String[] words = br.readLine().split(" ");
+            Skills skills = new Skills(Integer.parseInt(words[0]), words[1]);
+            result.add(skills);
+            return result;
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    private void writeListSkills(List<Skills> skillsList) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            bw.write(String.valueOf(skillsList));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void writeSkillsInFile(Skills skills) {
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(skills.toString());
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+            bw.write(String.valueOf(skills));
+            bw.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,32 +47,32 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
         writeSkillsInFile(skills);
     }
 
-    public Object read() {
-        return readSkillsFile();
+    @Override
+    public Skills getByID(Long skillID) {
+        List<Skills> readSkills = readAll();
+        for (Skills result: readSkills) {
+            if (skillID.equals(result.getId())) {
+                return result;
+            }
+        }
+        return null;
     }
 
-//    @Override
-//    public Skills getByID(Long skillID) {
-//        for (Skills result: skillsList) {
-//            if (skillID.equals(result.getId())) {
-//                return result;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    @Override
-//    public void deleteByID(Long skillID) {
-//        for (Skills result: skillsList) {
-//            if (skillID.equals(result.getId())) {
-//                skillsList.remove(result);
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public List<Skills> readAll() {
-//        readSkillsFile();
-//        return skillsList;
-//    }
+    @Override
+    public void deleteByID(Long skillID) {
+        List<Skills> readSkills = readAll();
+        for (Skills result: readSkills) {
+            if (skillID.equals(result.getId())) {
+                readSkills.remove(result);
+                writeListSkills(readSkills);
+            } else {
+                System.out.println("Skill not found");
+            }
+        }
+    }
+
+    @Override
+    public List<Skills> readAll() {
+        return readSkillsFile();
+    }
 }

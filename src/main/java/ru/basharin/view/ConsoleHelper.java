@@ -1,7 +1,5 @@
 package ru.basharin.view;
 
-import ru.basharin.controller.AccountController;
-import ru.basharin.controller.DeveloperController;
 import ru.basharin.model.Account;
 import ru.basharin.model.Skills;
 import ru.basharin.model.Developer;
@@ -27,16 +25,16 @@ public class ConsoleHelper {
         String input;
         while (true) {
             System.out.println("Hello. Choose number in menu");
-            System.out.println("Sign in: 1");
+            System.out.println("Skills menu: 1");
             System.out.println("Sign up: 2");
             System.out.println("Exit: #");
             input = scanner.nextLine();
             switch (input) {
                 case "1":
-//                    signIn();
+                    skillsView.skillsMenu();
                     break;
                 case "2":
-                    skillsView.chooseSkills();
+                    skillsView.writeSkills();
 
                     break;
                 case "#":

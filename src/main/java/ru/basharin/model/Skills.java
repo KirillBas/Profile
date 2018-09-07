@@ -5,90 +5,24 @@ import java.util.Objects;
 
 public class Skills extends BaseEntity implements Serializable {
 
-    private String java;
-    private String hibernate;
-    private String SQL;
-    private String maven;
-    private String JDBC;
-    private String spring;
-    private String git;
+    private String customSkill;
 
     public Skills(int id) {
         super(id);
-        this.java = "no";
-        this.hibernate = "no";
-        this.SQL = "no";
-        this.maven = "no";
-        this.JDBC = "no";
-        this.spring = "no";
-        this.git = "no";
+        this.customSkill = null;
     }
 
-    public Skills(int id, String java, String hibernate, String SQL, String maven, String JDBC, String spring, String git) {
+    public Skills(int id, String customSkill) {
         super(id);
-        this.java = java;
-        this.hibernate = hibernate;
-        this.SQL = SQL;
-        this.maven = maven;
-        this.JDBC = JDBC;
-        this.spring = spring;
-        this.git = git;
+        this.customSkill = customSkill;
     }
 
-    public String getJava() {
-        return java;
+    public String getCustomSkill() {
+        return customSkill;
     }
 
-    public String getHibernate() {
-        return hibernate;
-    }
-
-    public String getSQL() {
-        return SQL;
-    }
-
-    public String getMaven() {
-        return maven;
-    }
-
-    public String getJDBC() {
-        return JDBC;
-    }
-
-    public String getSpring() {
-        return spring;
-    }
-
-    public String getGit() {
-        return git;
-    }
-
-    public void setJava(String java) {
-        this.java = java;
-    }
-
-    public void setHibernate(String hibernate) {
-        this.hibernate = hibernate;
-    }
-
-    public void setSQL(String SQL) {
-        this.SQL = SQL;
-    }
-
-    public void setMaven(String maven) {
-        this.maven = maven;
-    }
-
-    public void setJDBC(String JDBC) {
-        this.JDBC = JDBC;
-    }
-
-    public void setSpring(String spring) {
-        this.spring = spring;
-    }
-
-    public void setGit(String git) {
-        this.git = git;
+    public void setCustomSkill(String customSkill) {
+        this.customSkill = customSkill;
     }
 
     @Override
@@ -97,29 +31,16 @@ public class Skills extends BaseEntity implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Skills skills = (Skills) o;
-        return Objects.equals(java, skills.java) &&
-                Objects.equals(hibernate, skills.hibernate) &&
-                Objects.equals(SQL, skills.SQL) &&
-                Objects.equals(maven, skills.maven) &&
-                Objects.equals(JDBC, skills.JDBC) &&
-                Objects.equals(spring, skills.spring) &&
-                Objects.equals(git, skills.git);
+        return Objects.equals(customSkill, skills.customSkill);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), java, hibernate, SQL, maven, JDBC, spring, git);
+        return Objects.hash(super.hashCode(), customSkill);
     }
 
     @Override
     public String toString() {
-        return getId() +
-                " " + java +
-                " " + hibernate +
-                " " + SQL +
-                " " + maven +
-                " " + JDBC +
-                " " + spring +
-                " " + git;
+        return getId() + " " + customSkill;
     }
 }
