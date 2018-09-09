@@ -1,11 +1,12 @@
 package ru.basharin.view;
 
 import ru.basharin.controller.SkillController;
-import ru.basharin.model.Skills;
+import ru.basharin.model.Skill;
 
+import java.util.List;
 import java.util.Scanner;
 
-class SkillsView {
+class SkillView {
 
     private final SkillController skillController = new SkillController();
     private final Scanner scanner = new Scanner(System.in);
@@ -13,21 +14,22 @@ class SkillsView {
 
 
     private void writeSkills() {
-        Skills skills = new Skills(numberID);
+        Skill skill = new Skill(numberID,null);
         String input;
         while (true) {
-            System.out.println("Write your Skills");
+            System.out.println("Write your Skill");
             input = scanner.nextLine();
             if (input.equals("#")) {
                 return;
             }
-            skills.setId(++numberID);
-            skills.setCustomSkill(input);
-            skillController.save(skills);
+            skill.setId(++numberID);
+            skill.setName(input);
+            skillController.save(skill);
         }
     }
 
     private void deleteSkills() {
+        Skill skill = new Skill(numberID,null);
         String input;
         while (true) {
             System.out.println("Write a skill that you want to remove");
@@ -35,23 +37,24 @@ class SkillsView {
             if (input.equals("#")) {
                 return;
             }
-            long id = skillController.read(input);
+            skill.setName(input);
+            long id = skillController.read(skill);
             skillController.deleteSkills(id);
         }
     }
 
-    private void readAll() {
-        skillController.readAll();
+    private List<Skill> readAll() {
+        return skillController.readAll();
     }
 
-    public void skillsMenu() {
+    void skillsMenu() {
         String input;
         while (true) {
             System.out.println("Select menu item");
             System.out.println("Write skill: #1");
             System.out.println("Delete skill: #2");
             System.out.println("Read all skills: #3");
-            System.out.println("Return: #4");
+            System.out.println("Return: #");
             input = scanner.nextLine();
             switch (input) {
                 case "1":
@@ -61,9 +64,9 @@ class SkillsView {
                     deleteSkills();
                     break;
                 case "3":
-                    readAll();
+                    System.out.println(readAll());
                     break;
-                case "4":
+                case "#":
                     return;
             }
         }

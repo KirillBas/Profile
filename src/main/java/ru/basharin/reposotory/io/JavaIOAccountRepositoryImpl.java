@@ -75,4 +75,9 @@ public class JavaIOAccountRepositoryImpl implements AccountRepository {
         readAccountFile();
         return accountList;
     }
+
+    @Override
+    public Long getByName(Account account) {
+        return null;
+    }
 }

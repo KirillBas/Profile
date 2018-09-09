@@ -67,4 +67,9 @@ public class JavaIODeveloperRepositoryImpl implements DeveloperRepository{
         readDeveloperFile();
         return developerList;
     }
+
+    @Override
+    public Long getByName(Developer developer) {
+        return null;
+    }
 }

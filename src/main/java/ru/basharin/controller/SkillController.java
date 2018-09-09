@@ -1,37 +1,29 @@
 package ru.basharin.controller;
 
 
-import ru.basharin.model.Skills;
+import ru.basharin.model.Skill;
+import ru.basharin.reposotory.SkillRepository;
 import ru.basharin.reposotory.io.JavaIOSkillRepositoryImpl;
 
 import java.util.List;
 
 public class SkillController {
-    private JavaIOSkillRepositoryImpl javaIOSkillRepository = new JavaIOSkillRepositoryImpl();
+    private JavaIOSkillRepositoryImpl skillRepository = new JavaIOSkillRepositoryImpl();
 
-    public void save(Skills skills) {
-        if (!skills.equals(null)) {
-            javaIOSkillRepository.save(skills);
-        }else {
-            System.out.println("Not found skills");
-        }
+    public void save(Skill skill) {
+        if (skill == null) throw new IllegalArgumentException();
+        skillRepository.save(skill);
     }
 
-    public long read(String skills) {
-        List<Skills> skillsList = javaIOSkillRepository.readAll();
-        for (Skills result : skillsList) {
-            if (result.equals(skills)) {
-                return result.getId();
-            }
-        }
-        return 0;
+    public long read(Skill skill) {
+        return skillRepository.getByName(skill);
     }
 
     public void deleteSkills(long id) {
-        javaIOSkillRepository.deleteByID(id);
+        skillRepository.deleteByID(id);
     }
 
-    public List<Skills> readAll() {
-        return javaIOSkillRepository.readAll();
+    public List<Skill> readAll() {
+        return skillRepository.readAll();
     }
 }

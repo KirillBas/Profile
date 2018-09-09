@@ -7,22 +7,14 @@ import java.util.List;
 public interface DeveloperRepository extends GenericRepository<Developer, Long> {
 
     @Override
-    default void save(Developer developer) {
-
-    }
+    void save(Developer developer);
 
     @Override
-    default Developer getByID(Long aLong) {
-        return null;
-    }
+    Developer getByID(Long aLong);
 
     @Override
-    default void deleteByID(Long aLong) {
-
-    }
+    void deleteByID(Long aLong);
 
     @Override
-    default List<Developer> readAll() {
-        return null;
-    }
+    List<Developer> readAll();
 }

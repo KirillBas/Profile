@@ -1,27 +1,22 @@
 package ru.basharin.reposotory;
 
-import ru.basharin.model.Skills;
+import ru.basharin.model.Skill;
 
 import java.util.List;
 
-public interface SkillRepository extends GenericRepository<Skills, Long> {
+public interface SkillRepository extends GenericRepository<Skill, Long> {
     @Override
-    default void save(Skills skills) {
-
-    }
+    void save(Skill skill);
 
     @Override
-    default Skills getByID(Long skillID) {
-        return null;
-    }
+    Skill getByID(Long skillID);
 
     @Override
-    default void deleteByID(Long skillID) {
-
-    }
+    void deleteByID(Long skillID);
 
     @Override
-    default List<Skills> readAll() {
-        return null;
-    }
+    List<Skill> readAll();
+
+    @Override
+    Long getByName(Skill skill);
 }

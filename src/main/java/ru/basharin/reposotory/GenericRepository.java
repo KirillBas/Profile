@@ -12,4 +12,6 @@ public interface GenericRepository<T, ID> {
 
     List<T> readAll();
 
+    ID getByName(T t);
+
 }

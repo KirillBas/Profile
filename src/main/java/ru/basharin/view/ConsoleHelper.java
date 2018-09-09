@@ -1,7 +1,7 @@
 package ru.basharin.view;
 
 import ru.basharin.model.Account;
-import ru.basharin.model.Skills;
+import ru.basharin.model.Skill;
 import ru.basharin.model.Developer;
 
 import java.util.*;
@@ -13,9 +13,9 @@ public class ConsoleHelper {
     private final Scanner scanner;
     private Developer developer = null;
     private Account account = null;
-    private Skills aSkills = null;
+    private Skill aSkill = null;
     private AccountView accountView = new AccountView();
-    private SkillsView skillsView = new SkillsView();
+    private SkillView skillView = new SkillView();
 
     public ConsoleHelper(Scanner scanner) {
         this.scanner = scanner;
@@ -25,17 +25,18 @@ public class ConsoleHelper {
         String input;
         while (true) {
             System.out.println("Hello. Choose number in menu");
-            System.out.println("Skills menu: 1");
-            System.out.println("Sign up: 2");
+            System.out.println("Skill menu: 1");
+            System.out.println("Account menu: 2");
+            System.out.println("Developer menu: 3");
             System.out.println("Exit: #");
             input = scanner.nextLine();
             switch (input) {
                 case "1":
-                    skillsView.skillsMenu();
+                    skillView.skillsMenu();
                     break;
                 case "2":
-                    skillsView.writeSkills();
-
+                    break;
+                case "3":
                     break;
                 case "#":
                     return;
@@ -50,7 +51,7 @@ public class ConsoleHelper {
             System.out.println("Change name: 1");
             System.out.println("Change login: 2");
             System.out.println("Change password: 3");
-            System.out.println("Change aSkills: 4");
+            System.out.println("Change aSkill: 4");
             System.out.println("Delete account: 5");
             System.out.println("Exit: #");
             input = scanner.nextLine();
