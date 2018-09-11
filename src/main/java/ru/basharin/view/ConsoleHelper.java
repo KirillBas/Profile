@@ -4,6 +4,7 @@ import ru.basharin.model.Account;
 import ru.basharin.model.Skill;
 import ru.basharin.model.Developer;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class ConsoleHelper {
@@ -21,7 +22,7 @@ public class ConsoleHelper {
         this.scanner = scanner;
     }
 
-    public void run() {
+    public void run() throws FileNotFoundException {
         String input;
         while (true) {
             System.out.println("Hello. Choose number in menu");

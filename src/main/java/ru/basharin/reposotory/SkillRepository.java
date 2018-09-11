@@ -2,6 +2,8 @@ package ru.basharin.reposotory;
 
 import ru.basharin.model.Skill;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public interface SkillRepository extends GenericRepository<Skill, Long> {
@@ -12,7 +14,7 @@ public interface SkillRepository extends GenericRepository<Skill, Long> {
     Skill getByID(Long skillID);
 
     @Override
-    void deleteByID(Long skillID);
+    void deleteByID(Long skillID) throws FileNotFoundException;
 
     @Override
     List<Skill> readAll();

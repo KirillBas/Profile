@@ -3,6 +3,7 @@ package ru.basharin.view;
 import ru.basharin.controller.SkillController;
 import ru.basharin.model.Skill;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ class SkillView {
         }
     }
 
-    private void deleteSkills() {
+    private void deleteSkills() throws FileNotFoundException {
         Skill skill = new Skill(numberID,null);
         String input;
         while (true) {
@@ -39,6 +40,7 @@ class SkillView {
             }
             skill.setName(input);
             long id = skillController.read(skill);
+            System.out.println(id);
             skillController.deleteSkills(id);
         }
     }
@@ -47,7 +49,7 @@ class SkillView {
         return skillController.readAll();
     }
 
-    void skillsMenu() {
+    void skillsMenu() throws FileNotFoundException {
         String input;
         while (true) {
             System.out.println("Select menu item");

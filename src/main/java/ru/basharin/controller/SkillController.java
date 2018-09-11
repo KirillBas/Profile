@@ -5,6 +5,7 @@ import ru.basharin.model.Skill;
 import ru.basharin.reposotory.SkillRepository;
 import ru.basharin.reposotory.io.JavaIOSkillRepositoryImpl;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class SkillController {
@@ -19,7 +20,7 @@ public class SkillController {
         return skillRepository.getByName(skill);
     }
 
-    public void deleteSkills(long id) {
+    public void deleteSkills(long id) throws FileNotFoundException {
         skillRepository.deleteByID(id);
     }
 

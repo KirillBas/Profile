@@ -1,5 +1,6 @@
 package ru.basharin.reposotory;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface GenericRepository<T, ID> {
@@ -8,7 +9,7 @@ public interface GenericRepository<T, ID> {
 
     T getByID(ID id);
 
-    void deleteByID(ID id);
+    void deleteByID(ID id) throws FileNotFoundException;
 
     List<T> readAll();
 
