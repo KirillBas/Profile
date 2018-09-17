@@ -40,12 +40,12 @@ class SkillView {
             }
             skill.setName(input);
             long id = skillController.read(skill);
-            System.out.println(id);
             skillController.deleteSkills(id);
         }
     }
 
     private List<Skill> readAll() {
+        System.out.println("List of skills");
         return skillController.readAll();
     }
 
@@ -53,7 +53,7 @@ class SkillView {
         String input;
         while (true) {
             System.out.println("Select menu item");
-            System.out.println("Write skill: #1");
+            System.out.println("Create skill: #1");
             System.out.println("Delete skill: #2");
             System.out.println("Read all skills: #3");
             System.out.println("Return: #");
@@ -72,7 +72,5 @@ class SkillView {
                     return;
             }
         }
-
-
     }
 }

@@ -1,15 +1,21 @@
 package ru.basharin.view;
 
+import ru.basharin.controller.AccountController;
 import ru.basharin.model.Account;
 import ru.basharin.reposotory.io.JavaIOAccountRepositoryImpl;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class AccountView {
-    private Scanner scanner;
-    private JavaIOAccountRepositoryImpl javaIOAccountRepository = new JavaIOAccountRepositoryImpl();
+    private Scanner scanner = new Scanner(System.in);
+    private AccountController accountController = new AccountController();
+    private int numberID = 0;
 
     public void createAccount() {
+
+
+        Account account = new Account(0, null, null);
 
         String login;
         while (true) {
@@ -31,18 +37,55 @@ public class AccountView {
             }
             break;
         }
+        account.setId(++numberID);
+        account.setName(login);
+        account.setPassword(pass);
+        accountController.save(account);
+    }
 
-        String ID;
+    public void deleteAccount() {
+        Account account = new Account(0,null, null);
+        String input;
         while (true) {
-            System.out.println("Write ID");
-            ID = scanner.nextLine();
-            if (ID.equals("#")){
+            System.out.println("Write account for delete");
+            input = scanner.nextLine();
+            if (input.equals("#")) {
                 return;
+            } else {
+                account.setName(input);
+                long id = accountController.readAccount(account);
+                accountController.deleteAccount(id);
             }
-            break;
         }
+    }
 
-        Account account = new Account(Integer.parseInt(ID), login, pass);
-        javaIOAccountRepository.create(account);
+    public List<Account> readAll() {
+        System.out.println("List accounts");
+        return accountController.readAll();
+    }
+
+    void accountMenu() {
+        String input;
+        while (true) {
+            System.out.println("Select menu item");
+            System.out.println("Create account: #1");
+            System.out.println("Delete account: #2");
+            System.out.println("Read all accounts: #3");
+            System.out.println("Return: #");
+            input = scanner.nextLine();
+            switch (input) {
+                case "1":
+                    createAccount();
+                    break;
+                case "2":
+                    deleteAccount();
+                    break;
+                case "3":
+                    System.out.println(readAll());
+                    break;
+                case "#":
+                    return;
+            }
+        }
     }
 }

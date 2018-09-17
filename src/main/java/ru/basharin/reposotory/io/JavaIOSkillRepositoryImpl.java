@@ -10,7 +10,7 @@ import java.util.List;
 public class JavaIOSkillRepositoryImpl implements SkillRepository{
 
     private final String FILE_NAME = "src\\main\\java\\ru\\basharin\\resources\\skills.txt";
-    private File file = new File(FILE_NAME);
+    private final File file = new File(FILE_NAME);
 
     @Override
     public void save(Skill skill) {
@@ -53,6 +53,7 @@ public class JavaIOSkillRepositoryImpl implements SkillRepository{
                 }
             }
             // write updated content without deleted item from ArrayList to file:
+            // Спасибо Жене за код))
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, false))) {
                 for (String str : list) {
                     bw.write(str + "\n");
