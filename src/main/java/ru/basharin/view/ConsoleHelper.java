@@ -37,7 +37,7 @@ public class ConsoleHelper {
                     accountView.accountMenu();
                     break;
                 case "3":
-
+                    developerView.skillsMenu();
                     break;
                 case "#":
                     return;
